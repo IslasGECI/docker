@@ -9,9 +9,11 @@ jobs:
       uses: actions/checkout@v2
     - name: Construye Dockerfiles
       run: make dockerfiles
-    - name: Construye imagenes
+    - name: Construye imagen Base
       run: docker build --tag islasgeci/base --file Dockerfile.base .
+    - name: Construye imagen Jupyter
       run: docker build --tag islasgeci/jupyter --file Dockerfile.jupyter .
-    - name: Ejecuta objetivo principal del Makefile
+    - name: Ejecuta objetivo principal del Makefile en Base
       run: docker run --volume ${PWD}:/workdir islasgeci/base make
+    - name: Ejecuta objetivo principal del Makefile en Jupyter
       run: docker run --volume ${PWD}:/workdir islasgeci/jupyter make
