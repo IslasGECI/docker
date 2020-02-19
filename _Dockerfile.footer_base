@@ -1,0 +1,12 @@
+# Instala modulos con pip
+RUN apt-get install --yes python3-pip && \
+    ln --symbolic /usr/bin/pip3 /usr/bin/pip && \
+    rm /usr/bin/python && \
+    ln --symbolic /usr/bin/python3 /usr/bin/python
+RUN pip install \
+    goodtables \
+    pygments
+
+
+# Inicia `bash` después de agregar permisos de escritura y ejecución para todos
+CMD ["bash", "-c", "umask 000 && bash"]

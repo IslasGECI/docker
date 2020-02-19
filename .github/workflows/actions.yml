@@ -1,0 +1,17 @@
+name: Conservación de Islas
+on: [push, pull_request]
+
+jobs:
+  actions:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Copia repositorio
+      uses: actions/checkout@v2
+    - name: Construye Dockerfiles
+      run: make dockerfiles
+    - name: Construye imagenes
+      run: docker build --tag islasgeci/base --file Dockerfile.base .
+      run: docker build --tag islasgeci/jupyter --file Dockerfile.jupyter .
+    - name: Ejecuta objetivo principal del Makefile
+      run: docker run --volume ${PWD}:/workdir islasgeci/base make
+      run: docker run --volume ${PWD}:/workdir islasgeci/jupyter make

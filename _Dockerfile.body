@@ -1,0 +1,42 @@
+USER root
+WORKDIR /workdir
+
+# Define variables de entorno
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONIOENCODING=utf-8
+ENV QT_QPA_PLATFORM=offscreen
+ENV TZ=US/Pacific
+
+# Instala paquetes en el sistema operativo
+RUN apt-get update && apt-get install --yes --no-install-recommends apt-utils
+RUN apt-get install --yes --no-install-recommends \
+    csvkit \
+    curl \
+    docker.io \
+    gettext-base \
+    git \
+    gnumeric \
+    jq \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libxml2-dev \
+    make \
+    openssl \
+    texlive-full \
+    vim \
+    xml2 \
+        && \
+    apt clean
+
+# Instala repo de queries
+RUN git clone https://github.com/IslasGECI/queries.git && \
+    cd queries && \
+    make install && \
+    make tests && \
+    cd .. && \
+    rm --recursive queries
+
+# Instala paquetes de R
+RUN R -e "install.packages('stringi', repo='http://cran.rstudio.com/')" && \
+    R -e "install.packages('tidyverse', repo='http://cran.rstudio.com/')"
+
