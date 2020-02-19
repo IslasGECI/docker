@@ -8,7 +8,7 @@ jobs:
     - name: Copia repositorio
       uses: actions/checkout@v2
     - name: Construye Dockerfiles
-      run: make dockerfiles
+      run: make --makefile=Makefile.build dockerfiles
     - name: Construye imagen Base
       run: docker build --tag islasgeci/base --file Dockerfile.base .
     - name: Construye imagen Jupyter
