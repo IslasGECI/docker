@@ -2,7 +2,7 @@ SHELL := /bin/bash
 
 tests: test_pythontex test_queries test_tidyverse
 
-SHELL := /bin/bash
+.PHONY: clean tests test_pythontex test_queries test_tidyverse
 
 test_pythontex: reports/prueba_pythontex.pdf
 
