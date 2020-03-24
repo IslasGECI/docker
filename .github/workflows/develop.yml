@@ -1,4 +1,4 @@
-name: Conservación de Islas
+name: Sube a Docker Hub versión Latest de Base y Júpiter
 on: [push, pull_request]
 
 jobs:
@@ -10,19 +10,19 @@ jobs:
     - name: Construye Dockerfiles
       run: make --makefile=Makefile.build dockerfiles
     - name: Construye imagen Base
-      run: docker build --tag islasgeci/base --file Dockerfile.base .
+      run: docker build --tag islasgeci/base:latest --file Dockerfile.base .
     - name: Construye imagen Jupyter
-      run: docker build --tag islasgeci/jupyter --file Dockerfile.jupyter .
+      run: docker build --tag islasgeci/jupyter:latest --file Dockerfile.jupyter .
     - name: Ejecuta objetivo principal del Makefile en Base
-      run: docker run --volume ${PWD}:/workdir islasgeci/base make
+      run: docker run --volume ${PWD}:/workdir islasgeci/base:latest make
     - name: Ejecuta objetivo principal del Makefile en Jupyter
-      run: docker run --volume ${PWD}:/workdir islasgeci/jupyter make
+      run: docker run --volume ${PWD}:/workdir islasgeci/jupyter:latest make
     - name: Docker log-in
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     - name: Sube Base a Docker Hub
-      run: docker push islasgeci/base
+      run: docker push islasgeci/base:latest
     - name: Sube Jupyter a Docker Hub
-      run: docker push islasgeci/jupyter
+      run: docker push islasgeci/jupyter:latest

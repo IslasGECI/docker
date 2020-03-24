@@ -1,0 +1,28 @@
+name: Sube a Docker Hub versión Stable de Base y Júpiter
+on: [push, pull_request]
+
+jobs:
+  actions:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Copia repositorio
+      uses: actions/checkout@v2
+    - name: Construye Dockerfiles
+      run: make --makefile=Makefile.build dockerfiles
+    - name: Construye imagen Base
+      run: docker build --tag islasgeci/base:stable --file Dockerfile.base .
+    - name: Construye imagen Jupyter
+      run: docker build --tag islasgeci/jupyter:stable --file Dockerfile.jupyter .
+    - name: Ejecuta objetivo principal del Makefile en Base
+      run: docker run --volume ${PWD}:/workdir islasgeci/base:stable make
+    - name: Ejecuta objetivo principal del Makefile en Jupyter
+      run: docker run --volume ${PWD}:/workdir islasgeci/jupyter:stable make
+    - name: Docker log-in
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+    - name: Sube Base a Docker Hub
+      run: docker push islasgeci/base:stable
+    - name: Sube Jupyter a Docker Hub
+      run: docker push islasgeci/jupyter:stable
