@@ -1,4 +1,4 @@
-name: Construye imágenes Base y Jupyter
+name: Prueba imágenes Base y Jupyter
 on: [push, pull_request]
 
 jobs:
