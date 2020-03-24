@@ -1,5 +1,8 @@
 name: Sube a Docker Hub versión Stable de Base y Júpiter
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
 
 jobs:
   actions:

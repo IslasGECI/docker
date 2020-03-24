@@ -1,6 +1,8 @@
 name: Sube a Docker Hub versión Latest de Base y Júpiter
-on: [push, pull_request]
-
+on:
+  push:
+    branches:
+      - develop
 jobs:
   actions:
     runs-on: ubuntu-18.04
