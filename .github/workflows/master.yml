@@ -22,9 +22,9 @@ jobs:
       run: docker run --volume ${PWD}:/workdir islasgeci/jupyter:stable make
     - name: Docker log-in
       env:
-        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+        docker_username: ${{ secrets.docker_username }}
+        docker_password: ${{ secrets.docker_password }}
+      run: echo "${docker_password}" | docker login -u "${docker_username}" --password-stdin
     - name: Sube Base a Docker Hub
       run: docker push islasgeci/base:stable
     - name: Sube Jupyter a Docker Hub
