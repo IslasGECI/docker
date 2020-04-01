@@ -1,5 +1,6 @@
 # Usa `python3` como la versión _default_ de Python
-RUN ln --symbolic /usr/bin/python3 /usr/bin/python
+RUN rm /usr/bin/python && \
+    ln --symbolic /usr/bin/python3 /usr/bin/python
 # Instala modulos con pip
 RUN apt-get install --yes python3-pip && \
     ln --symbolic /usr/bin/pip3 /usr/bin/pip
