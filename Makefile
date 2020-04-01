@@ -1,8 +1,11 @@
 SHELL := /bin/bash
 
-tests: test_pythontex test_queries test_tidyverse
+tests: test_python test_pythontex test_queries test_tidyverse
 
-.PHONY: clean tests test_pythontex test_queries test_tidyverse
+.PHONY: clean tests test_python test_pythontex test_queries test_tidyverse
+
+test_python:
+	[ "$$(python --version | cut --characters=1-8)" == "Python 3" ]
 
 test_pythontex: reports/prueba_pythontex.pdf
 
