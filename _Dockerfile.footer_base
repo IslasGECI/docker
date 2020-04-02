@@ -6,6 +6,9 @@ RUN apt-get install --yes python3-pip && \
     ln --symbolic /usr/bin/pip3 /usr/bin/pip
 RUN pip install \
     goodtables \
+    matplotlib \
+    numpy \
+    pandas \
     pygments
 
 # Inicia `bash` después de agregar permisos de escritura y ejecución para todos
