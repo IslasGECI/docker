@@ -5,8 +5,8 @@ RUN conda install --quiet --yes \
     'pandas' \
     'utm' \
         && \
-    conda clean --all -f -y && \
-    fix-permissions $CONDA_DIR
+    conda clean --all --force-pkgs-dirs --yes && \
+    fix-permissions ${CONDA_DIR}
 
 # Inicia `jupyter lab` después de agregar permisos de escritura y ejecución para todos
 CMD ["bash", "-c", "umask 000 && jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token=''"]
