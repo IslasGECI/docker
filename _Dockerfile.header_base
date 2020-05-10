@@ -1,1 +1,1 @@
-FROM rocker/r-ubuntu:18.04
+FROM rocker/r-ubuntu:20.04
