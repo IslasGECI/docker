@@ -1,10 +1,20 @@
 # Imágenes para Ciencia de Datos • GECI
 
-## Versiones:
+## Ejemplos:
 
-- Sistema operativo: Ubuntu 18.04.02 LTS
-- Python: 3.7.3
-- R: 3.6.1
+Para trabajar en una terminal de Ubuntu ejecuata:
+
+```shell
+docker run -it islasgeci/base:latest
+```
+
+Para trabajar en un _notebook_ de Jupyter ejecuata:
+
+```shell
+docker run -p 8888:8888 islasgeci/jupyter:latest
+```
+
+y visita [`http://localhost:8888`](http://localhost:8888).
 
 ---
 
