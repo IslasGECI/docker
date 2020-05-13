@@ -8,5 +8,8 @@ RUN conda install --quiet --yes \
     conda clean --all --force-pkgs-dirs --yes && \
     fix-permissions ${CONDA_DIR}
 
+# Instala módulos con pip
+RUN pip install git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta
+
 # Inicia `jupyter lab` después de agregar permisos de escritura y ejecución para todos
 CMD ["bash", "-c", "umask 000 && jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.token=''"]
