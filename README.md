@@ -2,13 +2,13 @@
 
 ## Ejemplos:
 
-Para trabajar en una terminal de Ubuntu ejecuata:
+Para trabajar en una terminal de Ubuntu ejecuta:
 
 ```shell
 docker run -it islasgeci/base:latest
 ```
 
-Para trabajar en un _notebook_ de Jupyter ejecuata:
+Para trabajar en un _notebook_ de Jupyter ejecuta:
 
 ```shell
 docker run -p 8888:8888 islasgeci/jupyter:latest
