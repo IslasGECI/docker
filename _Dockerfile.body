@@ -10,7 +10,6 @@ ENV TZ=US/Pacific
 # Instala paquetes en el sistema operativo
 RUN apt-get update && apt-get install --yes --no-install-recommends apt-utils
 RUN apt-get update && apt-get install --yes --no-install-recommends \
-    csvkit \
     curl \
     docker.io \
     gettext-base \
@@ -37,7 +36,9 @@ RUN git clone https://github.com/IslasGECI/queries.git && \
     rm --recursive queries
 
 # Instala descarga_datos
-RUN pip install git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta
+RUN pip install \
+    csvkit \
+    git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta
 
 # Instala paquetes de R
 RUN R -e "install.packages('stringi', repo='http://cran.rstudio.com/')" && \
