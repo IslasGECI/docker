@@ -27,6 +27,11 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
         && \
     apt clean
 
+# Instala descarga_datos
+RUN pip install \
+    csvkit \
+    git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta
+
 # Instala repo de queries
 RUN git clone https://github.com/IslasGECI/queries.git && \
     cd queries && \
@@ -34,11 +39,6 @@ RUN git clone https://github.com/IslasGECI/queries.git && \
     make tests && \
     cd .. && \
     rm --recursive queries
-
-# Instala descarga_datos
-RUN pip install \
-    csvkit \
-    git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta
 
 # Instala paquetes de R
 RUN R -e "install.packages('stringi', repo='http://cran.rstudio.com/')" && \
