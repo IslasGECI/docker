@@ -1,4 +1,4 @@
-name: Stable Base and Jupyter
+name: Stable Base
 on:
   push:
     branches:
@@ -10,16 +10,10 @@ jobs:
     steps:
     - name: Copia repositorio
       uses: actions/checkout@v2
-    - name: Construye Dockerfiles
-      run: make --makefile=Makefile.build dockerfiles
     - name: Construye imagen Base
       run: docker build --tag islasgeci/base:stable --file Dockerfile.base .
-    - name: Construye imagen Jupyter
-      run: docker build --tag islasgeci/jupyter:stable --file Dockerfile.jupyter .
     - name: Ejecuta objetivo principal del Makefile en Base
       run: docker run --volume ${PWD}:/workdir islasgeci/base:stable make
-    - name: Ejecuta objetivo principal del Makefile en Jupyter
-      run: docker run --volume ${PWD}:/workdir islasgeci/jupyter:stable make
     - name: Docker log-in
       env:
         docker_username: ${{ secrets.docker_username }}
@@ -27,5 +21,3 @@ jobs:
       run: echo "${docker_password}" | docker login -u "${docker_username}" --password-stdin
     - name: Sube Base a Docker Hub
       run: docker push islasgeci/base:stable
-    - name: Sube Jupyter a Docker Hub
-      run: docker push islasgeci/jupyter:stable

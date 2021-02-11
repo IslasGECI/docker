@@ -25,7 +25,7 @@ test_queries:
     [ $$(cambia_formato_fecha tests/data/test.csv | tail -1 | cut --characters=1-10) == "2019-12-01" ]
 
 test_tidyverse:
-	R -e "library('tidyverse')"
+	Rscript -e "library('tidyverse')"
 
 clean:
 	rm --force reports/*.aux

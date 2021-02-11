@@ -1,4 +1,4 @@
-name: Prueba imágenes Base y Jupyter
+name: Prueba imagen Base
 on: [push, pull_request]
 
 jobs:
@@ -7,13 +7,7 @@ jobs:
     steps:
     - name: Copia repositorio
       uses: actions/checkout@v2
-    - name: Construye Dockerfiles
-      run: make --makefile=Makefile.build dockerfiles
     - name: Construye imagen Base
       run: docker build --tag islasgeci/base --file Dockerfile.base .
-    - name: Construye imagen Jupyter
-      run: docker build --tag islasgeci/jupyter --file Dockerfile.jupyter .
     - name: Ejecuta objetivo principal del Makefile en Base
       run: docker run --volume ${PWD}:/workdir islasgeci/base make
-    - name: Ejecuta objetivo principal del Makefile en Jupyter
-      run: docker run --volume ${PWD}:/workdir islasgeci/jupyter make
