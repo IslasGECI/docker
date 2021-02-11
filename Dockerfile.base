@@ -1,3 +1,11 @@
+FROM rocker/r-ubuntu:20.04
+# Usa `python3` como la versión _default_ de Python
+RUN apt-get update && apt-get install --yes --no-install-recommends apt-utils
+RUN apt-get update && apt-get install --yes python3 && \
+    ln --symbolic /usr/bin/python3 /usr/bin/python
+# Instala pip
+RUN apt-get install --yes python3-pip && \
+    ln --symbolic /usr/bin/pip3 /usr/bin/pip
 USER root
 WORKDIR /workdir
 
@@ -48,3 +56,13 @@ RUN git clone https://github.com/IslasGECI/queries.git && \
 # Instala paquetes de R
 RUN R -e "install.packages('stringi', repo='http://cran.rstudio.com/')" && \
     R -e "install.packages('tidyverse', repo='http://cran.rstudio.com/')"
+# Instala modulos con pip
+RUN pip install \
+    goodtables \
+    matplotlib \
+    numpy \
+    pandas \
+    pygments
+
+# Inicia `bash` después de agregar permisos de escritura y ejecución para todos
+CMD ["bash", "-c", "umask 000 && bash"]
