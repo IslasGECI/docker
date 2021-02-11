@@ -34,10 +34,15 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
 RUN ln --symbolic /usr/bin/python3 /usr/bin/python && \
     ln --symbolic /usr/bin/pip3 /usr/bin/pip
 
-# Instala descarga_datos
+# Instala modulos con pip
 RUN pip install \
     csvkit \
-    git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta
+    git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta \
+    goodtables \
+    matplotlib \
+    numpy \
+    pandas \
+    pygments
 
 # Instala repo de bats
 RUN git clone https://github.com/bats-core/bats-core.git && \
@@ -54,14 +59,6 @@ RUN git clone https://github.com/IslasGECI/queries.git && \
 
 # Instala paquetes de R
 RUN Rscript -e "install.packages('tidyverse', repo='http://cran.rstudio.com/')"
-
-# Instala modulos con pip
-RUN pip install \
-    goodtables \
-    matplotlib \
-    numpy \
-    pandas \
-    pygments
 
 # Inicia `bash` después de agregar permisos de escritura y ejecución para todos
 CMD ["bash", "-c", "umask 000 && bash"]
