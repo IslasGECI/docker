@@ -1,11 +1,4 @@
 FROM rocker/r-ubuntu:20.04
-# Usa `python3` como la versión _default_ de Python
-RUN apt-get update && apt-get install --yes --no-install-recommends apt-utils
-RUN apt-get update && apt-get install --yes python3 && \
-    ln --symbolic /usr/bin/python3 /usr/bin/python
-# Instala pip
-RUN apt-get install --yes python3-pip && \
-    ln --symbolic /usr/bin/pip3 /usr/bin/pip
 USER root
 WORKDIR /workdir
 
@@ -29,16 +22,27 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
     libxml2-dev \
     make \
     openssl \
+    python3 \
+    python3-pip \
     texlive-full \
     vim \
     xml2 \
         && \
     apt clean
 
-# Instala descarga_datos
+# Usa `python3` como la versión _default_ de Python
+RUN ln --symbolic /usr/bin/python3 /usr/bin/python && \
+    ln --symbolic /usr/bin/pip3 /usr/bin/pip
+
+# Instala modulos con pip
 RUN pip install \
     csvkit \
-    git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta
+    git+https://github.com/IslasGECI/descarga_datos.git@v0.1.0-beta \
+    goodtables \
+    matplotlib \
+    numpy \
+    pandas \
+    pygments
 
 # Instala repo de bats
 RUN git clone https://github.com/bats-core/bats-core.git && \
@@ -54,15 +58,7 @@ RUN git clone https://github.com/IslasGECI/queries.git && \
     rm --recursive queries
 
 # Instala paquetes de R
-RUN R -e "install.packages('stringi', repo='http://cran.rstudio.com/')" && \
-    R -e "install.packages('tidyverse', repo='http://cran.rstudio.com/')"
-# Instala modulos con pip
-RUN pip install \
-    goodtables \
-    matplotlib \
-    numpy \
-    pandas \
-    pygments
+RUN Rscript -e "install.packages('tidyverse', repo='http://cran.rstudio.com/')"
 
 # Inicia `bash` después de agregar permisos de escritura y ejecución para todos
 CMD ["bash", "-c", "umask 000 && bash"]
