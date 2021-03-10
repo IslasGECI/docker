@@ -11,7 +11,7 @@ jobs:
     - name: Copia repositorio
       uses: actions/checkout@v2
     - name: Construye imagen Base
-      run: docker build --tag islasgeci/base:latest --file Dockerfile.base .
+      run: docker build --tag islasgeci/base:latest .
     - name: Ejecuta objetivo principal del Makefile en Base
       run: docker run --volume ${PWD}:/workdir islasgeci/base:latest make
     - name: Docker log-in
