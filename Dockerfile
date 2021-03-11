@@ -1,4 +1,4 @@
-FROM rocker/r-ubuntu:20.04
+FROM rocker/tidyverse:4.0.4
 USER root
 WORKDIR /workdir
 
@@ -23,6 +23,7 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
     make \
     openssl \
     python3 \
+    python3-dev \
     python3-pip \
     texlive-full \
     vim \
@@ -56,9 +57,6 @@ RUN git clone https://github.com/IslasGECI/queries.git && \
     make tests && \
     cd .. && \
     rm --recursive queries
-
-# Instala paquetes de R
-RUN Rscript -e "install.packages('tidyverse', repo='http://cran.rstudio.com/')"
 
 # Inicia `bash` después de agregar permisos de escritura y ejecución para todos
 CMD ["bash", "-c", "umask 000 && bash"]
