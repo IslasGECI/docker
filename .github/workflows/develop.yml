@@ -7,11 +7,13 @@ on:
 jobs:
   actions:
     runs-on: ubuntu-18.04
+    env:
+      github_sha: ${{ github.sha }}
     steps:
     - name: Copia repositorio
       uses: actions/checkout@v2
     - name: Construye imagen Base
-      run: docker build --tag islasgeci/base:latest --tag islasgeci/base:${GITHUB_SHA:0:4} .
+      run: docker build --tag islasgeci/base:latest --tag islasgeci/base:${github_sha:0:4} .
     - name: Ejecuta objetivo principal del Makefile en Base
       run: docker run --volume ${PWD}:/workdir islasgeci/base:latest make
     - name: Docker log-in
@@ -19,5 +21,7 @@ jobs:
         docker_username: ${{ secrets.docker_username }}
         docker_password: ${{ secrets.docker_password }}
       run: echo "${docker_password}" | docker login -u "${docker_username}" --password-stdin
-    - name: Sube Base a Docker Hub
+    - name: Sube latest a Docker Hub
       run: docker push islasgeci/base:latest
+    - name: Sube sha a Docker Hub
+      run: docker push islasgeci/base:${github_sha:0:4}
