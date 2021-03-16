@@ -5,7 +5,7 @@ tests: test_os test_python test_python_modules test_pythontex test_queries test_
 .PHONY: clean tests test_os test_python test_python_modules test_pythontex test_queries test_tidyverse
 
 test_os:
-	cat /etc/os-release | grep "Ubuntu 21.04 LTS"
+	cat /etc/os-release | grep "Ubuntu 20.04 LTS"
 
 test_python:
 	[ "$$(python --version | cut --characters=1-8)" == "Python 3" ]
