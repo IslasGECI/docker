@@ -9,5 +9,5 @@ jobs:
       uses: actions/checkout@v2
     - name: Construye imagen Base
       run: docker build --tag islasgeci/base .
-    - name: Ejecuta objetivo principal del Makefile en Base
-      run: docker run --volume ${PWD}:/workdir islasgeci/base make
+    - name: Corre las pruebas
+      run: docker run --volume ${PWD}:/workdir islasgeci/base make tests
