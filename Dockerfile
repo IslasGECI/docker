@@ -53,7 +53,6 @@ RUN git clone https://github.com/bats-core/bats-core.git && \
 # Instala repo de queries
 RUN git clone https://github.com/IslasGECI/queries.git && \
     cd queries && \
-    git reset --hard ee2433d0203d58dc5216d33543a45a7e78043ac2 && \
     make install && \
     cd .. && \
     rm --recursive queries
