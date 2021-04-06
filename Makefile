@@ -11,7 +11,7 @@ test_python:
 	[ "$$(python --version | cut --characters=1-8)" == "Python 3" ]
 
 test_python_modules:
-	pip freeze | grep descarga-datos
+	pip freeze | grep descarga-datos==0.2.0
 	pip freeze | grep matplotlib
 	pip freeze | grep numpy
 	pip freeze | grep pandas
