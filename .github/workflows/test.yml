@@ -1,9 +1,9 @@
-name: Prueba imagen Base
-on: [push, pull_request]
+name: Test build
+on: pull_request
 
 jobs:
   actions:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
     - name: Copia repositorio
       uses: actions/checkout@v2

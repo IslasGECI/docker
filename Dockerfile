@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:4.0.4
+FROM rocker/tidyverse:4.0.5
 USER root
 WORKDIR /workdir
 
@@ -38,7 +38,7 @@ RUN ln --symbolic /usr/bin/python3 /usr/bin/python && \
 # Instala modulos con pip
 RUN pip install \
     csvkit \
-    git+https://github.com/IslasGECI/descarga_datos.git@v0.2.0 \
+    git+https://github.com/IslasGECI/descarga_datos.git@v0.2.1 \
     goodtables \
     matplotlib \
     numpy \
