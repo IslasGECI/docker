@@ -1,19 +1,19 @@
-SHELL := /bin/bash
-
 tests: \
-		test_os \
-		test_python \
+		test_os_version \
 		test_python_modules \
+		test_python_version \
 		test_pythontex \
 		test_queries \
 		test_r_version \
 		test_tidyverse
 
+SHELL := /bin/bash
+
 .PHONY: \
 		clean \
-		test_os \
-		test_python \
+		test_os_version \
 		test_python_modules \
+		test_python_version \
 		test_pythontex \
 		test_queries \
 		test_r_version \
@@ -26,17 +26,17 @@ clean:
 	rm --force reports/*.pdf
 	rm --force reports/*.pytxcode
 
-test_os:
+test_os_version:
 	cat /etc/os-release | grep "Ubuntu 20.04 LTS"
-
-test_python:
-	[ "$$(python --version | cut --characters=1-8)" == "Python 3" ]
 
 test_python_modules:
 	pip freeze | grep descarga-datos==0.2.1
 	pip freeze | grep matplotlib
 	pip freeze | grep numpy
 	pip freeze | grep pandas
+
+test_python_version:
+	python --version | grep "Python 3.8.5"
 
 test_pythontex: reports/prueba_pythontex.pdf
 
