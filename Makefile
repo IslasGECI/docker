@@ -25,6 +25,7 @@ clean:
 	rm --force reports/*.log
 	rm --force reports/*.pdf
 	rm --force reports/*.pytxcode
+	rm --force --recursive reports/pythontex-files-prueba_pythontex
 
 test_os_version:
 	cat /etc/os-release | grep "Ubuntu 20.04 LTS"
