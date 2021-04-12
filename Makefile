@@ -25,6 +25,7 @@ clean:
 	rm --force reports/*.log
 	rm --force reports/*.pdf
 	rm --force reports/*.pytxcode
+	rm --force --recursive reports/pythontex-files-prueba_pythontex
 
 test_os_version:
 	cat /etc/os-release | grep "Ubuntu 20.04 LTS"
@@ -34,6 +35,7 @@ test_python_modules:
 	pip freeze | grep matplotlib
 	pip freeze | grep numpy
 	pip freeze | grep pandas
+	pip freeze | grep scipy
 
 test_python_version:
 	python --version | grep "Python 3.8.5"

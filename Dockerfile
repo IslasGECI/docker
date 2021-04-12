@@ -43,7 +43,8 @@ RUN pip install \
     matplotlib \
     numpy \
     pandas \
-    pygments
+    pygments \
+    scipy
 
 # Instala repo de bats
 RUN git clone https://github.com/bats-core/bats-core.git && \
