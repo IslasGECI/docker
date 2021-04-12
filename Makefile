@@ -34,6 +34,7 @@ test_python_modules:
 	pip freeze | grep matplotlib
 	pip freeze | grep numpy
 	pip freeze | grep pandas
+	pip freeze | grep scipy
 
 test_python_version:
 	python --version | grep "Python 3.8.5"
