@@ -28,7 +28,7 @@ clean:
 	rm --force --recursive reports/pythontex-files-prueba_pythontex
 
 test_os_version:
-	cat /etc/os-release | grep "Ubuntu 20.04 LTS"
+	cat /etc/os-release | grep "Ubuntu 20.04"
 
 test_python_modules:
 	pip freeze | grep descarga-datos==0.2.1
