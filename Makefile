@@ -32,7 +32,7 @@ test_os_version:
 
 test_python_modules:
 	pip freeze | grep bootstrapping-tools
-	pip freeze | grep descarga-datos==0.2.1
+	pip freeze | grep descarga-datos==0.2
 	pip freeze | grep geci-cli
 	pip freeze | grep geci-plots
 	pip freeze | grep matplotlib
@@ -41,7 +41,7 @@ test_python_modules:
 	pip freeze | grep scipy
 
 test_python_version:
-	python --version | grep "Python 3.8.5"
+	python --version | grep "Python 3.8"
 
 test_pythontex: reports/prueba_pythontex.pdf
 
@@ -55,7 +55,7 @@ test_queries:
     [ $$(cambia_formato_fecha tests/data/test.csv | tail -1 | cut --characters=1-10) == "2019-12-01" ]
 
 test_r_version:
-	r --version | grep 4.0.5
+	r --version | grep 4.1
 
 test_tidyverse:
 	Rscript -e "library('tidyverse')"
