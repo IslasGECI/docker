@@ -40,7 +40,7 @@ RUN pip install \
     git+https://github.com/IslasGECI/bootstrapping_tools.git \
     git+https://github.com/IslasGECI/descarga_datos.git@v0.2.1 \
     git+https://github.com/IslasGECI/geci_cli.git@v0.1.0 \
-    git+https://github.com/IslasGECI/geci_plots@v0.1.0.git \
+    git+https://github.com/IslasGECI/geci_plots.git@v0.1.0 \
     git+https://github.com/IslasGECI/pythontex_tools.git@v0.1.0 \
     goodtables \
     matplotlib \
