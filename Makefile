@@ -33,11 +33,12 @@ test_os_version:
 test_python_modules:
 	pip freeze | grep bootstrapping-tools
 	pip freeze | grep descarga-datos==0.2
-	pip freeze | grep geci-cli
-	pip freeze | grep geci-plots
+	pip freeze | grep geci-cli==0.1
+	pip freeze | grep geci-plots==0.1
 	pip freeze | grep matplotlib
 	pip freeze | grep numpy
 	pip freeze | grep pandas
+	pip freeze | grep pythontex-tools==0.1
 	pip freeze | grep scipy
 
 test_python_version:
