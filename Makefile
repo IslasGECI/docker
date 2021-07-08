@@ -31,7 +31,10 @@ test_os_version:
 	cat /etc/os-release | grep "Ubuntu 20.04"
 
 test_python_modules:
+	pip freeze | grep bootstrapping_tools
 	pip freeze | grep descarga-datos==0.2.1
+	pip freeze | grep geci_cli
+	pip freeze | grep geci_plots
 	pip freeze | grep matplotlib
 	pip freeze | grep numpy
 	pip freeze | grep pandas
