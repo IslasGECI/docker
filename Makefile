@@ -35,11 +35,11 @@ test_python_modules:
 	pip freeze | grep descarga-datos==0.2
 	pip freeze | grep geci-cli==0.1
 	pip freeze | grep geci-plots==0.1
-	pip freeze | grep matplotlib
-	pip freeze | grep numpy
-	pip freeze | grep pandas
+	pip freeze | grep matplotlib==3
+	pip freeze | grep numpy==1
+	pip freeze | grep pandas==1
 	pip freeze | grep pythontex-tools==0.1
-	pip freeze | grep scipy
+	pip freeze | grep scipy==1
 
 test_python_version:
 	python --version | grep "Python 3.8"
