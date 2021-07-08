@@ -32,8 +32,7 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
     apt clean
 
 # Usa `python3` como la versión _default_ de Python
-RUN ln --symbolic /usr/bin/python3 /usr/bin/python && \
-    ln --symbolic /usr/bin/pip3 /usr/bin/pip
+RUN ln --symbolic /usr/bin/python3 /usr/bin/python
 
 # Instala modulos con pip
 RUN pip install \
