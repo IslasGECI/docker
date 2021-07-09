@@ -39,7 +39,7 @@ test_external_python_modules:
 	pip freeze | grep scipy==1
 
 test_internal_python_modules:
-	pip freeze | grep bootstrapping-tools
+	pip freeze | grep bootstrapping-tools==0.3
 	pip freeze | grep descarga-datos==0.2
 	pip freeze | grep geci-cli==0.1
 	pip freeze | grep geci-plots==0.1
