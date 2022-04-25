@@ -1,4 +1,4 @@
-FROM rocker/tidyverse:latest
+FROM islasgeci/tidyverse:latest
 USER root
 WORKDIR /workdir
 
