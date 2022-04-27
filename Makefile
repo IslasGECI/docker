@@ -30,7 +30,7 @@ clean:
 	rm --force --recursive reports/pythontex-files-prueba_pythontex
 
 test_os_version:
-	cat /etc/os-release | grep "Ubuntu 20.04"
+	cat /etc/os-release | grep "Ubuntu 22.04 LTS"
 
 test_external_python_modules:
 	pip freeze | grep matplotlib==3
@@ -46,7 +46,7 @@ test_internal_python_modules:
 	pip freeze | grep pythontex-tools==0.1
 
 test_python_version:
-	python --version | grep "Python 3.8"
+	python --version | grep "Python 3.10"
 
 test_pythontex: reports/prueba_pythontex.pdf
 
@@ -60,7 +60,9 @@ test_queries:
     [ $$(cambia_formato_fecha tests/data/test.csv | tail -1 | cut --characters=1-10) == "2019-12-01" ]
 
 test_r_version:
-	r --version | grep 4.1
+	r --version | grep 4.3
 
-test_tidyverse:
-	Rscript -e "library('tidyverse')"
+test_external_r_modules:
+	Rscript -e "packageVersion('tidyverse')" | grep "1\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('testthat')"  | grep "3\.[0-9]*\.[0-9]*"
+	
