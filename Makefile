@@ -33,10 +33,13 @@ test_os_version:
 	cat /etc/os-release | grep "Ubuntu 22.04 LTS"
 
 test_external_python_modules:
-	pip freeze | grep matplotlib==3
-	pip freeze | grep numpy==1
-	pip freeze | grep pandas==1
-	pip freeze | grep scipy==1
+	pip show csvkit | grep "Version: 1."
+	pip show goodtables | grep "Version: 2."
+	pip show matplotlib | grep "Version: 3."
+	pip show numpy | grep "Version: 1."
+	pip show pandas | grep "Version: 1."
+	pip show pygments | grep "Version: "
+	pip show scipy | grep "Version: 1."
 
 test_internal_python_modules:
 	pip show bootstrapping-tools | grep "Version: 0."
