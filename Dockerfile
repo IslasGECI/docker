@@ -9,8 +9,7 @@ ENV QT_QPA_PLATFORM=offscreen
 ENV TZ=US/Pacific
 
 # Instala paquetes en el sistema operativo
-RUN apt-get update && apt-get install --yes --no-install-recommends apt-utils
-RUN apt-get update && apt-get install --yes --no-install-recommends \
+RUN apt update && apt full-upgrade --yes && apt install --yes \
     curl \
     docker.io \
     gettext-base \
