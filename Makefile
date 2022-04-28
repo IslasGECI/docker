@@ -1,25 +1,27 @@
 tests: \
-		test_external_python_modules \
-		test_internal_python_modules \
+		test_external_python_packages \
+		test_external_r_packages \
+		test_internal_python_packages \
+		test_os_packages \
 		test_os_version \
 		test_python_version \
 		test_pythontex \
 		test_queries \
-		test_r_version \
-		test_tidyverse
+		test_r_version
 
 SHELL := /bin/bash
 
 .PHONY: \
 		clean \
-		test_external_python_modules \
-		test_internal_python_modules \
+		test_external_python_packages \
+		test_external_r_packages \
+		test_internal_python_packages \
+		test_os_packages \
 		test_os_version \
 		test_python_version \
 		test_pythontex \
 		test_queries \
 		test_r_version \
-		test_tidyverse \
 		tests
 
 clean:
@@ -29,24 +31,56 @@ clean:
 	rm --force reports/*.pytxcode
 	rm --force --recursive reports/pythontex-files-prueba_pythontex
 
+test_external_python_packages:
+	@echo "Check Python module versions"
+	pip show csvkit | grep "Version: 1."
+	pip show goodtables | grep "Version: 2."
+	pip show matplotlib | grep "Version: 3."
+	pip show numpy | grep "Version: 1."
+	pip show pandas | grep "Version: 1."
+	pip show pygments | grep "Version: 2."
+	pip show scipy | grep "Version: 1."
+
+test_external_r_packages:
+	@echo "Check R package versions"
+	Rscript -e "packageVersion('tidyverse')" | grep "1\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('testthat')"  | grep "3\.[0-9]*\.[0-9]*"
+
+test_internal_python_packages:
+	@echo "Check GECI module versions"
+	pip show bootstrapping-tools | grep "Version: 0."
+	pip show descarga-datos | grep "Version: 0."
+	pip show geci-cli | grep "Version: 0."
+	pip show geci-plots | grep "Version: 0."
+	pip show pythontex-tools | grep "Version: 0."
+
+test_os_packages:
+	@echo "Check Ubuntu package versions"
+	apt-cache policy curl | grep "Installed: 7"
+	apt-cache policy docker.io | grep "Installed: 20"
+	apt-cache policy gettext-base | grep "Installed: 0"
+	apt-cache policy git | grep "Installed: 1:2"
+	apt-cache policy gnumeric | grep "Installed: 1"
+	apt-cache policy jq | grep "Installed: 1"
+	apt-cache policy libcurl4-openssl-dev | grep "Installed: 7"
+	apt-cache policy libssl-dev | grep "Installed: 3"
+	apt-cache policy libxml2-dev | grep "Installed: 2"
+	apt-cache policy make | grep "Installed: 4"
+	apt-cache policy openssl | grep "Installed: 3"
+	apt-cache policy python3 | grep "Installed: 3"
+	apt-cache policy python3-dev | grep "Installed: 3"
+	apt-cache policy python3-pip | grep "Installed: 22"
+	apt-cache policy texlive-full | grep "Installed: 2021"
+	apt-cache policy vim | grep "Installed: 2:8"
+	apt-cache policy xml2 | grep "Installed: 0"
+
 test_os_version:
-	cat /etc/os-release | grep "Ubuntu 20.04"
-
-test_external_python_modules:
-	pip freeze | grep matplotlib==3
-	pip freeze | grep numpy==1
-	pip freeze | grep pandas==1
-	pip freeze | grep scipy==1
-
-test_internal_python_modules:
-	pip freeze | grep bootstrapping-tools==0.3
-	pip freeze | grep descarga-datos==0.2
-	pip freeze | grep geci-cli==0.1
-	pip freeze | grep geci-plots==0.1
-	pip freeze | grep pythontex-tools==0.1
+	@echo "Check Ubuntu version"
+	cat /etc/os-release | grep "Ubuntu 22.04 LTS"
 
 test_python_version:
-	python --version | grep "Python 3.8"
+	@echo "Check Python version"
+	python --version | grep "Python 3.10"
 
 test_pythontex: reports/prueba_pythontex.pdf
 
@@ -60,7 +94,5 @@ test_queries:
     [ $$(cambia_formato_fecha tests/data/test.csv | tail -1 | cut --characters=1-10) == "2019-12-01" ]
 
 test_r_version:
-	r --version | grep 4.1
-
-test_tidyverse:
-	Rscript -e "library('tidyverse')"
+	@echo "Check R version"
+	r --version | grep 4.3
