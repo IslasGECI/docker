@@ -38,7 +38,7 @@ test_external_python_modules:
 	pip show matplotlib | grep "Version: 3."
 	pip show numpy | grep "Version: 1."
 	pip show pandas | grep "Version: 1."
-	pip show pygments | grep "Version: "
+	pip show pygments | grep "Version: 2."
 	pip show scipy | grep "Version: 1."
 
 test_internal_python_modules:
