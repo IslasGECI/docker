@@ -1,4 +1,4 @@
-# Imágenes para Ciencia de Datos • GECI
+# Imágenes para CI/CD: Conservación de Islas / Ciencia de Datos
 
 Para trabajar en una terminal de Ubuntu ejecuta:
 
