@@ -73,6 +73,8 @@ test_os_packages:
 	apt-cache policy texlive-full | grep "Installed: 2021"
 	apt-cache policy vim | grep "Installed: 2:8"
 	apt-cache policy xml2 | grep "Installed: 0"
+	@echo "Check ShellSpec version"
+	$$HOME/.local/lib/shellspec/bin/shellspec --version | grep "^0"
 
 test_os_version:
 	@echo "Check Ubuntu version"

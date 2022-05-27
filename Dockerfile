@@ -1,4 +1,5 @@
 FROM islasgeci/tidyverse:latest
+COPY src /install_scripts
 USER root
 WORKDIR /workdir
 
@@ -47,6 +48,9 @@ RUN pip install \
     pandas \
     pygments \
     scipy
+
+# Instala ShellSpec
+RUN /install_scripts/install_shellspec.sh
 
 # Instala repo de bats
 RUN git clone https://github.com/bats-core/bats-core.git && \
