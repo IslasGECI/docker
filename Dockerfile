@@ -5,6 +5,7 @@ WORKDIR /workdir
 
 # Define variables de entorno
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="/root/.local/lib/shellspec:$PATH"
 ENV PYTHONIOENCODING=utf-8
 ENV QT_QPA_PLATFORM=offscreen
 ENV TZ=US/Pacific
