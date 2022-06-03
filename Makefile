@@ -45,8 +45,15 @@ test_external_python_packages:
 
 test_external_r_packages:
 	@echo "Check R package versions"
+	Rscript -e "packageVersion('covr')" | grep "3\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('devtools')" | grep "2\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('DT')" | grep "0\.[0-9]*"
+	Rscript -e "packageVersion('lintr')" | grep "2\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('roxygen2')" | grep "7\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('styler')" | grep "1\.[0-9]*\.[0-9]*"
 	Rscript -e "packageVersion('tidyverse')" | grep "1\.[0-9]*\.[0-9]*"
 	Rscript -e "packageVersion('testthat')"  | grep "3\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('vdiffr')" | grep "1\.[0-9]*\.[0-9]*"
 
 test_internal_python_packages:
 	@echo "Check GECI module versions"
