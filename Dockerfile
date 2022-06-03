@@ -50,6 +50,9 @@ RUN pip install \
     pygments \
     scipy
 
+# Instala paquetes de R
+RUN Rscript -e "install.packages(c('covr', 'DT', 'lintr', 'styler', 'vdiffr'), repos='http://cran.rstudio.com')"
+
 # Instala ShellSpec
 RUN /install_scripts/install_shellspec.sh
 
