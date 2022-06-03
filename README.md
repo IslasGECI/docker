@@ -1,3 +1,5 @@
+<a href="https://www.islas.org.mx/"><img src="https://www.islas.org.mx/img/logo.svg" align="right" width="256" /></a>
+
 # CI/CD: Conservación de Islas / Ciencia de Datos
 
 Para trabajar en una terminal de Ubuntu ejecuta:
