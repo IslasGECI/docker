@@ -1,4 +1,5 @@
 tests: \
+		test_adhoc_installations \
 		test_external_python_packages \
 		test_external_r_packages \
 		test_internal_python_packages \
@@ -13,6 +14,7 @@ SHELL := /bin/bash
 
 .PHONY: \
 		clean \
+		test_adhoc_installations \
 		test_external_python_packages \
 		test_external_r_packages \
 		test_internal_python_packages \
@@ -43,8 +45,15 @@ test_external_python_packages:
 
 test_external_r_packages:
 	@echo "Check R package versions"
+	Rscript -e "packageVersion('covr')" | grep "3\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('devtools')" | grep "2\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('DT')" | grep "0\.[0-9]*"
+	Rscript -e "packageVersion('lintr')" | grep "2\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('roxygen2')" | grep "7\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('styler')" | grep "1\.[0-9]*\.[0-9]*"
 	Rscript -e "packageVersion('tidyverse')" | grep "1\.[0-9]*\.[0-9]*"
 	Rscript -e "packageVersion('testthat')"  | grep "3\.[0-9]*\.[0-9]*"
+	Rscript -e "packageVersion('vdiffr')" | grep "1\.[0-9]*\.[0-9]*"
 
 test_internal_python_packages:
 	@echo "Check GECI module versions"
@@ -73,8 +82,11 @@ test_os_packages:
 	apt-cache policy texlive-full | grep "Installed: 2021"
 	apt-cache policy vim | grep "Installed: 2:8"
 	apt-cache policy xml2 | grep "Installed: 0"
+
+test_adhoc_installations:
 	@echo "Check ShellSpec version"
 	$$HOME/.local/lib/shellspec/bin/shellspec --version | grep "^0"
+	shellspec --version | grep "^0"
 
 test_os_version:
 	@echo "Check Ubuntu version"

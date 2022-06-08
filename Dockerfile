@@ -5,6 +5,7 @@ WORKDIR /workdir
 
 # Define variables de entorno
 ENV DEBIAN_FRONTEND=noninteractive
+ENV PATH="/root/.local/lib/shellspec:$PATH"
 ENV PYTHONIOENCODING=utf-8
 ENV QT_QPA_PLATFORM=offscreen
 ENV TZ=US/Pacific
@@ -48,6 +49,9 @@ RUN pip install \
     pandas \
     pygments \
     scipy
+
+# Instala paquetes de R
+RUN Rscript -e "install.packages(c('covr', 'DT', 'lintr', 'styler', 'vdiffr'), repos='http://cran.rstudio.com')"
 
 # Instala ShellSpec
 RUN /install_scripts/install_shellspec.sh
