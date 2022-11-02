@@ -1,4 +1,4 @@
-FROM islasgeci/tidyverse:latest
+FROM rocker/tidyverse:latest
 COPY src /install_scripts
 USER root
 WORKDIR /workdir
