@@ -86,7 +86,7 @@ test_adhoc_installations:
 
 test_os_version:
 	@echo "Check Ubuntu version"
-	cat /etc/os-release | grep "Ubuntu 22.04 LTS"
+	cat /etc/os-release | grep "Ubuntu 22.04"
 
 test_python_version:
 	@echo "Check Python version"
