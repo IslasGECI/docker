@@ -14,8 +14,8 @@ jobs:
       uses: actions/checkout@v2
     - name: Construye imagen Base
       run: docker build --tag islasgeci/base:latest --tag islasgeci/base:${github_sha:0:4} .
-    - name: Ejecuta objetivo principal del Makefile en Base
-      run: docker run --volume ${PWD}:/workdir islasgeci/base:latest make
+    - name: Run tests
+      run: docker run --volume ${PWD}:/workdir islasgeci/base:latest make tests
     - name: Docker log-in
       env:
         docker_username: ${{ secrets.docker_username }}
