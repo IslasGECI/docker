@@ -13,7 +13,6 @@ ENV TZ=US/Pacific
 # Instala paquetes en el sistema operativo
 RUN apt update && apt full-upgrade --yes && apt install --yes \
     curl \
-    docker.io \
     gettext-base \
     git \
     gnumeric \
@@ -22,12 +21,12 @@ RUN apt update && apt full-upgrade --yes && apt install --yes \
     libssl-dev \
     libxml2-dev \
     make \
+    neovim \
     openssl \
     python3 \
     python3-dev \
     python3-pip \
     texlive-full \
-    vim \
     xml2 \
         && \
     apt clean
@@ -38,28 +37,16 @@ RUN ln --symbolic /usr/bin/python3 /usr/bin/python
 # Instala modulos con pip
 RUN pip install \
     csvkit \
-    git+https://github.com/IslasGECI/bootstrapping_tools.git@main \
-    git+https://github.com/IslasGECI/descarga_datos.git@main \
     git+https://github.com/IslasGECI/geci_cli.git@main \
-    git+https://github.com/IslasGECI/geci_plots.git@main \
     git+https://github.com/IslasGECI/pythontex_tools.git@main \
     goodtables \
-    matplotlib \
-    numpy \
-    pandas \
-    pygments \
-    scipy
+    pygments
 
 # Instala paquetes de R
-RUN Rscript -e "install.packages(c('covr', 'DT', 'lintr', 'styler', 'vdiffr'), repos='http://cran.rstudio.com')"
+RUN Rscript -e "install.packages(c('covr', 'lintr', 'styler', 'vdiffr'), repos='http://cran.rstudio.com')"
 
 # Instala ShellSpec
 RUN /install_scripts/install_shellspec.sh
-
-# Instala repo de bats
-RUN git clone https://github.com/bats-core/bats-core.git && \
-    cd bats-core && \
-    ./install.sh /usr/local
 
 # Instala repo de queries
 RUN git clone https://github.com/IslasGECI/queries.git && \
