@@ -10,4 +10,4 @@ docker run -it islasgeci/base:latest
 
 ---
 
-[Grupo de Ecología y Conservación de Islas, A.C.](https://www.islas.org.mx/)
+[Grupo de Ecología y Conservación de Islas](https://www.islas.org.mx/)
