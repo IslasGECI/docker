@@ -58,17 +58,22 @@ test_internal_python_packages:
 test_os_packages:
 	@echo "Check Ubuntu package versions"
 	apt-cache policy curl | grep "Installed: 8"
+	apt-cache policy gettext-base | grep "Installed: 0"
 	apt-cache policy git | grep "Installed: 1:2"
 	apt-cache policy gnumeric | grep "Installed: 1"
 	apt-cache policy jq | grep "Installed: 1"
 	apt-cache policy libcurl4-openssl-dev | grep "Installed: 8"
 	apt-cache policy libssl-dev | grep "Installed: 3"
+	apt-cache policy libuv1-dev | grep "Installed: 1"
 	apt-cache policy libxml2-dev | grep "Installed: 2"
 	apt-cache policy make | grep "Installed: 4"
+	apt-cache policy neovim | grep "Installed: 0"
 	apt-cache policy openssl | grep "Installed: 3"
 	apt-cache policy python3 | grep "Installed: 3"
 	apt-cache policy python3-dev | grep "Installed: 3"
 	apt-cache policy python3-pip | grep "Installed: 24"
+	apt-cache policy texlive-full | grep "Installed: 2023"
+	apt-cache policy xml2 | grep "Installed: 0"
 
 test_adhoc_installations:
 	@echo "Check ShellSpec version"
