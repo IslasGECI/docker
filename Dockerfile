@@ -6,6 +6,7 @@ WORKDIR /workdir
 # Define variables de entorno
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH="/root/.local/lib/shellspec:$PATH"
+ENV PIP_BREAK_SYSTEM_PACKAGES=1
 ENV PYTHONIOENCODING=utf-8
 ENV QT_QPA_PLATFORM=offscreen
 ENV TZ=US/Pacific
@@ -19,6 +20,7 @@ RUN apt update && apt full-upgrade --yes && apt install --yes \
     jq \
     libcurl4-openssl-dev \
     libssl-dev \
+    libuv1 \
     libxml2-dev \
     make \
     neovim \
