@@ -42,7 +42,11 @@ RUN pip install \
     git+https://github.com/IslasGECI/geci_cli.git@main \
     git+https://github.com/IslasGECI/pythontex_tools.git@main \
     goodtables \
-    pygments
+    matplotlib \
+    numpy \
+    pandas \
+    pygments \
+    scipy
 
 # Instala paquetes de R
 RUN Rscript -e "install.packages(c('covr', 'lintr', 'styler', 'vdiffr'), repos='http://cran.rstudio.com')"
