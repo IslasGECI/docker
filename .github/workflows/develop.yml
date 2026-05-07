@@ -27,6 +27,9 @@ jobs:
     - name: Sube latest a Docker Hub
       run: |
         ubuntu_version=$(docker run --rm islasgeci/base:latest grep -E "^VERSION_ID=" /etc/os-release | cut -d= -f2 | tr -d '"')
+        four_digit_var=$(date +%y%V)
         docker tag islasgeci/base:latest islasgeci/base:${ubuntu_version}
+        docker tag islasgeci/base:latest islasgeci/base:${ubuntu_version}.${four_digit_var}
         docker push islasgeci/base:latest
         docker push islasgeci/base:${ubuntu_version}
+        docker push islasgeci/base:${ubuntu_version}.${four_digit_var}
