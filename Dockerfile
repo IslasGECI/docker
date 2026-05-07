@@ -49,7 +49,7 @@ RUN pip install \
     scipy
 
 # Instala paquetes de R
-RUN Rscript -e "install.packages(c('covr', 'lintr', 'styler', 'vdiffr'), repos='http://cran.rstudio.com')"
+RUN Rscript -e "install.packages(c('covr', 'DT', 'htmltools', 'lintr', 'styler', 'vdiffr'), repos='http://cran.rstudio.com')"
 
 # Instala ShellSpec
 RUN /install_scripts/install_shellspec.sh
