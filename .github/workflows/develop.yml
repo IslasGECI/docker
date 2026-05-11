@@ -13,6 +13,8 @@ jobs:
     env:
       github_sha: ${{ github.sha }}
     steps:
+    - name: Notifica inicio
+      run: curl -fsS --retry 3 https://hc-ping.com/263d932b-9739-4f21-92af-c3f09d98ef5d/start
     - name: Copia repositorio
       uses: actions/checkout@v2
     - name: Construye imagen Base
@@ -33,3 +35,5 @@ jobs:
         docker push islasgeci/base:latest
         docker push islasgeci/base:${ubuntu_version}
         docker push islasgeci/base:${ubuntu_version}.${four_digit_var}
+    - name: Notifica health check
+      run: curl -fsS --retry 3 https://hc-ping.com/263d932b-9739-4f21-92af-c3f09d98ef5d
