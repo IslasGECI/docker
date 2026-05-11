@@ -13,11 +13,11 @@ jobs:
     env:
       github_sha: ${{ github.sha }}
     steps:
-    - name: Notifica inicio
+    - name: Notify start
       run: curl -fsS --retry 3 https://hc-ping.com/263d932b-9739-4f21-92af-c3f09d98ef5d/start
-    - name: Copia repositorio
+    - name: Checkout repository
       uses: actions/checkout@v2
-    - name: Construye imagen Base
+    - name: Build base image
       run: docker build --tag islasgeci/base:latest .
     - name: Run tests
       run: docker run --volume ${PWD}:/workdir islasgeci/base:latest make tests
@@ -26,7 +26,7 @@ jobs:
         docker_username: ${{ secrets.docker_username }}
         docker_password: ${{ secrets.docker_password }}
       run: echo "${docker_password}" | docker login -u "${docker_username}" --password-stdin
-    - name: Sube latest a Docker Hub
+    - name: Push latest to Docker Hub
       run: |
         ubuntu_version=$(docker run --rm islasgeci/base:latest grep -E "^VERSION_ID=" /etc/os-release | cut -d= -f2 | tr -d '"')
         four_digit_var=$(date +%y%V)
@@ -35,5 +35,5 @@ jobs:
         docker push islasgeci/base:latest
         docker push islasgeci/base:${ubuntu_version}
         docker push islasgeci/base:${ubuntu_version}.${four_digit_var}
-    - name: Notifica health check
+    - name: Notify health check
       run: curl -fsS --retry 3 https://hc-ping.com/263d932b-9739-4f21-92af-c3f09d98ef5d
