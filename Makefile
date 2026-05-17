@@ -54,7 +54,7 @@ test_external_r_packages:
 
 test_internal_python_packages:
 	@echo "Check GECI module versions"
-	pip show bootstrapping-tools | grep "Version: 0."
+	pip show bootstrapping-tools | grep "Version: 3."
 	pip show descarga-datos | grep "Version: 0."
 	pip show geci-cli | grep "Version: 0."
 	pip show geci-plots | grep "Version: 0."
