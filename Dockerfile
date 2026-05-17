@@ -39,7 +39,10 @@ RUN ln --symbolic /usr/bin/python3 /usr/bin/python
 # Instala modulos con pip
 RUN pip install \
     csvkit \
+    git+https://github.com/IslasGECI/bootstrapping_tools.git@main \
+    git+https://github.com/IslasGECI/descarga_datos.git@main \
     git+https://github.com/IslasGECI/geci_cli.git@main \
+    git+https://github.com/IslasGECI/geci_plots.git@main \
     git+https://github.com/IslasGECI/pythontex_tools.git@main \
     goodtables \
     matplotlib \
