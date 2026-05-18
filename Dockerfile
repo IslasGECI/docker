@@ -41,9 +41,9 @@ RUN pip install \
     csvkit \
     git+https://github.com/IslasGECI/bootstrapping_tools.git \
     git+https://github.com/IslasGECI/descarga_datos.git \
-    git+https://github.com/IslasGECI/geci_cli.git@main \
+    git+https://github.com/IslasGECI/geci_cli.git \
     git+https://github.com/IslasGECI/geci_plots.git \
-    git+https://github.com/IslasGECI/pythontex_tools.git@main \
+    git+https://github.com/IslasGECI/pythontex_tools.git \
     goodtables \
     matplotlib \
     numpy \
