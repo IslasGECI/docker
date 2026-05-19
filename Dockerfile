@@ -26,6 +26,7 @@ RUN apt update && apt full-upgrade --yes && apt install --yes \
     neovim \
     openssl \
     python3 \
+    python3-venv \
     python3-dev \
     python3-pip \
     texlive-full \
@@ -35,6 +36,11 @@ RUN apt update && apt full-upgrade --yes && apt install --yes \
 
 # Usa `python3` como la versión _default_ de Python
 RUN ln --symbolic /usr/bin/python3 /usr/bin/python
+
+# Crear entorno virtual
+RUN python3 -m venv /opt/venv
+RUN /opt/venv/bin/pip install --upgrade pip
+ENV PATH="/opt/venv/bin:$PATH"
 
 # Instala modulos con pip
 RUN pip install \
