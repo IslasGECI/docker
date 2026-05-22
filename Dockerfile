@@ -27,7 +27,7 @@ RUN apt update && apt full-upgrade --yes && apt install --yes \
     openssl \
     python3 \
     python3-dev \
-    python3-pigments \
+    python3-pygments \
     python3-pip \
     python3-venv \
     texlive-full \
