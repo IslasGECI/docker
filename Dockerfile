@@ -26,9 +26,10 @@ RUN apt update && apt full-upgrade --yes && apt install --yes \
     neovim \
     openssl \
     python3 \
-    python3-venv \
     python3-dev \
+    python3-pigments \
     python3-pip \
+    python3-venv \
     texlive-full \
     xml2 \
         && \
