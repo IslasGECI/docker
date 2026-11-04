@@ -76,7 +76,7 @@ test_os_packages:
 	apt-cache policy openssl | grep "Installed: 3"
 	apt-cache policy python3 | grep "Installed: 3"
 	apt-cache policy python3-dev | grep "Installed: 3"
-	apt-cache policy python3-pip | grep "Installed: 24"
+	apt-cache policy python3-pip | grep "Installed: 25"
 	apt-cache policy texlive-full | grep "Installed: 2023"
 	apt-cache policy xml2 | grep "Installed: 0"
 
