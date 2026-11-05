@@ -77,7 +77,7 @@ test_os_packages:
 	apt-cache policy python3 | grep "Installed: 3"
 	apt-cache policy python3-dev | grep "Installed: 3"
 	apt-cache policy python3-pip | grep "Installed: 25"
-	apt-cache policy texlive-full | grep "Installed: 2023"
+	apt-cache policy texlive-full | grep "Installed: 2025"
 	apt-cache policy xml2 | grep "Installed: 0"
 
 test_adhoc_installations:
@@ -87,11 +87,11 @@ test_adhoc_installations:
 
 test_os_version:
 	@echo "Check Ubuntu version"
-	cat /etc/os-release | grep "Ubuntu 24.04"
+	cat /etc/os-release | grep "Ubuntu 26.04"
 
 test_python_version:
 	@echo "Check Python version"
-	python --version | grep "Python 3.12"
+	python --version | grep "Python 3.14"
 
 test_pythontex: reports/prueba_pythontex.pdf
 
